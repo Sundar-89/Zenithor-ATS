@@ -308,7 +308,6 @@ async function renderReports(){
 }
 
 // Wiring
-window.addEventListener('hashchange', router);
 window.addEventListener('load', ()=>{
   document.getElementById('logoutBtn')?.addEventListener('click', ()=>{
     localStorage.removeItem('zr_session');
@@ -317,6 +316,9 @@ window.addEventListener('load', ()=>{
     setAuthUI();
     navigate('/login');
   });
+  initTheme();
+  router();
+});
 function initTheme() {
   const sel = document.getElementById('themeSelect');
   const saved = localStorage.getItem('zr_theme') || 'default';
@@ -333,4 +335,5 @@ function initTheme() {
 
   router();
 });
+
 
