@@ -78,6 +78,11 @@ a{color:var(--text);text-decoration:none}
 .btn-primary{box-shadow: var(--glow)}
 .btn-ghost:hover{background: var(--glass)}
 .brand{text-shadow: 0 0 10px rgba(255,255,255,.08)}
+.badge-done{
+font-size:.75rem; padding:4px 8px; border-radius:999px;
+color:#0b1320; background:linear-gradient(135deg, var(--accent), var(--accent2));
+box-shadow: var(--glow)
+}
 
 
 
