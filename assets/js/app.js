@@ -317,5 +317,20 @@ window.addEventListener('load', ()=>{
     setAuthUI();
     navigate('/login');
   });
+function initTheme() {
+  const sel = document.getElementById('themeSelect');
+  const saved = localStorage.getItem('zr_theme') || 'default';
+  document.documentElement.setAttribute('data-theme', saved);
+  if (sel) {
+    sel.value = saved;
+    sel.addEventListener('change', ()=>{
+      const val = sel.value || 'default';
+      document.documentElement.setAttribute('data-theme', val);
+      localStorage.setItem('zr_theme', val);
+    });
+  }
+}
+
   router();
 });
+
