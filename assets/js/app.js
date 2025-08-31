@@ -115,12 +115,10 @@ async function renderDesignation(params) {
   const dep = cfg.departments[deptKey];
   $('#designationTitle').textContent = `${dep.name} — Select designation`;
   const grid = $('#candGrid');
-  grid.innerHTML = Object.keys(dep.designations).map(roleKey => `
-    <div class="tile" data-role="${roleKey}">
-      <h3>${roleKey.replace(/-/g,' ')}</h3>
-      <p>4 resumes</p>
-    </div>
-  `).join('');
+ grid.innerHTML = Object.keys(dep.designations).map(roleKey => {
+const done = picks[${deptKey}:${roleKey}] !== undefined;
+return <div class="tile" data-role="${roleKey}"> <div style="display:flex;align-items:center;justify-content:space-between;gap:8px"> <h3 style="margin:0">${roleKey.replace(/-/g,' ')}</h3> ${done ? '<span class="badge-done">Completed</span>' : ''} </div> <p>4 resumes</p> </div> ;
+}).join('');
   grid.querySelectorAll('.tile').forEach(el=>{
     el.onclick = () => {
       ctx.deptKey = deptKey;
@@ -334,3 +332,4 @@ localStorage.setItem('zr_theme', val);
 });
 }
 }
+
