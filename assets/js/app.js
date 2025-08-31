@@ -334,6 +334,7 @@ function initTheme() {
 }
 
   router();
-});
+);
+
 
 
