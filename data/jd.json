@@ -1,0 +1,326 @@
+{
+"finance-team-lead": {
+"title": "Finance Team Lead",
+"department": "Finance",
+"reportsTo": "Finance Manager",
+"type": "Full-time",
+"summary": "Oversee financial reporting, budgeting, cost management; lead team; ensure compliance and process optimization.",
+"responsibilities": [
+"Lead financial analysis, forecasting, and budgeting activities.",
+"Supervise the finance team and provide mentorship.",
+"Ensure compliance with regulatory standards and manage audits.",
+"Identify and implement cost-saving initiatives.",
+"Collaborate with cross-departmental teams on financial matters."
+],
+"requirements": [
+"Strong financial analysis and forecasting skills.",
+"Proficiency in financial software and ERP systems.",
+"Leadership and team management abilities."
+],
+"qualifications": [
+"Bachelor's degree in Finance, Accounting, or related field.",
+"5+ years of experience in finance, with at least 2 years in a leadership role."
+],
+"metrics": [
+"Accuracy in financial reporting and compliance.",
+"Cost savings and optimization initiatives."
+]
+},
+"financial-analyst": {
+"title": "Finance Analyst",
+"department": "Finance",
+"reportsTo": "Finance Manager",
+"type": "Full-time",
+"summary": "Support budgeting, forecasting, and financial modeling; identify trends and provide recommendations.",
+"responsibilities": [
+"Prepare and analyze financial reports and forecasts.",
+"Support budgeting and financial planning activities.",
+"Conduct cost-benefit analysis and financial modeling.",
+"Monitor financial performance and prepare variance analysis.",
+"Provide recommendations for optimizing financial processes and reducing costs."
+],
+"requirements": [
+"Expertise in financial modeling, Excel, and data analysis.",
+"Strong attention to detail and ability to interpret complex financial data.",
+"Ability to communicate findings effectively to senior management."
+],
+"qualifications": [
+"Bachelor's degree in Finance, Economics, or related field.",
+"2+ years of experience in financial analysis."
+],
+"metrics": [
+"Accuracy of financial reports and forecasts.",
+"Efficiency improvements in financial processes."
+]
+},
+"fpa-analyst": {
+"title": "Financial Planning & Analysis Analyst",
+"department": "Finance",
+"reportsTo": "FP&A Manager",
+"type": "Full-time",
+"summary": "Improve forecasting accuracy, develop financial models, and support data-driven decisions.",
+"responsibilities": [
+"Develop and maintain financial models and forecasting tools.",
+"Support strategic planning and budgeting processes.",
+"Provide detailed financial analysis to support key business decisions.",
+"Monitor and report on financial performance, highlighting risks and opportunities.",
+"Collaborate with department heads to refine business plans and forecasts."
+],
+"requirements": [
+"Advanced proficiency in Excel, Power BI, and financial modeling.",
+"Strong analytical and problem-solving abilities.",
+"Effective communication skills and experience working with senior management."
+],
+"qualifications": [
+"Bachelor's degree in Finance, Accounting, or related field.",
+"3+ years of experience in financial planning, analysis, or related fields."
+],
+"metrics": [
+"Forecasting accuracy and timely reporting.",
+"Contributions to cost control and financial optimization efforts."
+]
+},
+"accounting-executive": {
+"title": "Accounting Executive",
+"department": "Accounting",
+"reportsTo": "Senior Accountant",
+"type": "Full-time",
+"summary": "Handle accounts reconciliation, tax compliance, and financial reporting with accuracy.",
+"responsibilities": [
+"Perform accounts reconciliation and resolve discrepancies.",
+"Prepare financial reports and support month-end closing.",
+"Ensure compliance with tax laws and payroll management.",
+"Support auditing and financial documentation processes.",
+"Assist in implementing process improvements for accounting workflows."
+],
+"requirements": [
+"Proficiency in accounting software (QuickBooks, Tally, SAP).",
+"Strong attention to detail and organizational skills.",
+"Basic understanding of financial reporting and compliance."
+],
+"qualifications": [
+"Bachelor's degree in Accounting, Finance, or related field.",
+"2+ years of experience in accounting."
+],
+"metrics": [
+"Accuracy in reconciliations and reporting.",
+"Efficiency improvements in accounting processes."
+]
+},
+"marketing-team-lead": {
+"title": "Marketing Team Lead",
+"department": "Marketing",
+"reportsTo": "Marketing Manager",
+"type": "Full-time",
+"summary": "Drive marketing initiatives and manage the team to achieve business goals and brand visibility.",
+"responsibilities": [
+"Lead the execution of cross-channel marketing campaigns.",
+"Mentor and guide a team of marketers.",
+"Analyze and report on campaign performance (Google Analytics, HubSpot).",
+"Collaborate with sales, creative, and product teams.",
+"Conduct training to improve team skills."
+],
+"requirements": [
+"Proficiency in campaign strategy and analytics tools.",
+"Excellent leadership and team management skills.",
+"Strong communication and interpersonal skills."
+],
+"qualifications": [
+"Bachelor's degree in Marketing, Business, or related field.",
+"3+ years of experience in marketing with 1+ year leadership."
+],
+"metrics": [
+"Increase in brand awareness and lead generation.",
+"Improvement in team engagement and campaign ROI."
+]
+},
+"marketing-manager": {
+"title": "Marketing Manager",
+"department": "Marketing",
+"reportsTo": "Senior Marketing Manager/Director",
+"type": "Full-time",
+"summary": "Oversee strategic campaigns, manage budgets, and drive engagement with cross-functional leadership.",
+"responsibilities": [
+"Manage marketing budget and allocate resources.",
+"Develop and track cross-channel campaigns.",
+"Lead market research and competitor analysis.",
+"Collaborate across departments on strategies.",
+"Report on performance and optimize."
+],
+"requirements": [
+"Expertise in budget planning and campaign execution.",
+"Strong analytical and problem-solving abilities.",
+"Leadership, project management, and communication skills."
+],
+"qualifications": [
+"Bachelor's degree in Marketing, Business, or related.",
+"5+ years in marketing; 2+ years managerial."
+],
+"metrics": [
+"Campaign ROI and engagement.",
+"Market share growth."
+]
+},
+"product-marketing-specialist": {
+"title": "Product Marketing Specialist",
+"department": "Marketing",
+"reportsTo": "Product Marketing Manager",
+"type": "Full-time",
+"summary": "Own product launches, go-to-market, and positioning across teams.",
+"responsibilities": [
+"Lead product launch initiatives.",
+"Conduct competitor and market analysis.",
+"Align messaging with sales and product.",
+"Track product performance and optimize.",
+"Create product docs and training content."
+],
+"requirements": [
+"Expertise in product positioning and GTM.",
+"Strong analytical skills and market research.",
+"Proficiency in customer insights and competitive analysis."
+],
+"qualifications": [
+"Bachelor's in Marketing, Business, or related.",
+"3+ years in product marketing."
+],
+"metrics": [
+"Launch success and sales growth.",
+"Market share and positioning."
+]
+},
+"business-development-associate": {
+"title": "Business Development Associate",
+"department": "Sales and Marketing",
+"reportsTo": "Business Development Manager",
+"type": "Full-time",
+"summary": "Generate new business, manage client relationships, and drive revenue.",
+"responsibilities": [
+"Identify and engage potential clients.",
+"Develop proposals and presentations.",
+"Maintain relationships to secure repeat business.",
+"Conduct market analysis for opportunities.",
+"Align with sales/marketing teams."
+],
+"requirements": [
+"Strong interpersonal and communication skills.",
+"Proficiency in lead gen and pipeline management.",
+"Analytical mindset and problem-solving."
+],
+"qualifications": [
+"Bachelor's in Business, Marketing, or related.",
+"2+ years in business development or sales."
+],
+"metrics": [
+"Revenue from new clients.",
+"Lead conversion."
+]
+},
+"operations-team-lead": {
+"title": "Operations Team Lead",
+"department": "Manufacturing",
+"reportsTo": "Operations Manager",
+"type": "Full-time",
+"summary": "Oversee daily manufacturing operations with efficiency, quality, and safety.",
+"responsibilities": [
+"Supervise teams to achieve performance goals.",
+"Implement Lean and Six Sigma practices.",
+"Develop shift schedules and optimize resources.",
+"Foster positive team culture and training.",
+"Ensure safety and compliance; evaluate performance."
+],
+"requirements": [
+"Leadership and team management.",
+"Process optimization (Lean, Six Sigma).",
+"Communication and decision-making."
+],
+"qualifications": [
+"Bachelor's in Engineering/Operations (MBA preferred).",
+"3+ years manufacturing operations; ERP familiarity."
+],
+"metrics": [
+"Production efficiency and downtime reduction.",
+"Safety/quality compliance and retention."
+]
+},
+"operations-manager": {
+"title": "Operations Manager",
+"department": "Manufacturing",
+"reportsTo": "Plant Director",
+"type": "Full-time",
+"summary": "Own end-to-end manufacturing strategy, resources, and standards.",
+"responsibilities": [
+"Strategies for efficiency/productivity.",
+"Manage budgets/resources/timelines.",
+"Ensure safety, quality, environmental compliance.",
+"Lead cross-functional teams; drive innovation.",
+"Align operations with corporate strategy."
+],
+"requirements": [
+"Analytical and project management skills.",
+"Budget management and strategic planning.",
+"Leadership for large teams; risk assessment."
+],
+"qualifications": [
+"Bachelor's in Engineering/Business (MBA preferred).",
+"7+ years operations management; large-scale projects."
+],
+"metrics": [
+"Cost/waste reduction; deadlines/quality met.",
+"Engagement and retention."
+]
+},
+"supply-chain-executive": {
+"title": "Supply Chain Executive",
+"department": "Supply Chain",
+"reportsTo": "Supply Chain Manager",
+"type": "Full-time",
+"summary": "Manage procurement, inventory, and logistics for seamless operations.",
+"responsibilities": [
+"Oversee inventory and procurement.",
+"Vendor relationships and reliability.",
+"Demand forecasting and inventory optimization.",
+"Streamline logistics to reduce lead time/cost.",
+"Monitor performance and improve."
+],
+"requirements": [
+"Vendor management and procurement expertise.",
+"ERP proficiency (SAP, Oracle).",
+"Negotiation and analytical skills."
+],
+"qualifications": [
+"Bachelor's in Supply Chain/Business.",
+"3+ years procurement/logistics/inventory."
+],
+"metrics": [
+"Lead time and inventory cost reduction.",
+"On-time delivery and supplier performance."
+]
+},
+"process-improvement-executive": {
+"title": "Process Improvement Executive",
+"department": "Continuous Improvement",
+"reportsTo": "Process Improvement Manager",
+"type": "Full-time",
+"summary": "Analyze and optimize workflows using Lean Six Sigma.",
+"responsibilities": [
+"Identify inefficiencies and propose enhancements.",
+"Implement Lean Six Sigma to reduce defects/cycle time.",
+"Root-cause analysis and solutions.",
+"Train teams on CI methodologies.",
+"Drive cross-functional change."
+],
+"requirements": [
+"Lean and Six Sigma expertise.",
+"Analytical and problem-solving skills.",
+"Communication and training abilities."
+],
+"qualifications": [
+"Bachelor's in Engineering/Operations.",
+"3+ years in process improvement; LSS preferred."
+],
+"metrics": [
+"Defects and waste reduction.",
+"Cycle time improvement and adoption."
+]
+}
+}
