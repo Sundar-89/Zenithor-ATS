@@ -2,13 +2,130 @@
 const $ = (sel, root=document) => root.querySelector(sel);
 const app = $('#app');
 
+// Add to routes:
 const routes = {
   '/login': renderLogin,
   '/home': renderHome,
   '/candidates': renderDepartments,
   '/designation': renderDesignation,
-  '/viewer': renderViewer
+  '/viewer': renderViewer,
+  '/jobs': renderJobs,
+  '/interviews': renderInterviews,
+  '/reports': renderReports
 };
+
+// Render Jobs
+async function renderJobs(){
+  if (!requireAuth()) return;
+  app.innerHTML = $('#jobs-tpl').innerHTML;
+  const cfg = await loadConfig();
+
+  // Build a flat list of 12 roles from config
+  const roles = [];
+  Object.entries(cfg.departments).forEach(([deptKey, dep])=>{
+    Object.keys(dep.designations).forEach(roleKey=>{
+      roles.push({
+        deptKey, deptName: dep.name,
+        roleKey, roleName: roleKey.replace(/-/g,' '),
+        openings: 1 // placeholder
+      });
+    });
+  });
+
+  const list = $('#jobsList');
+  const renderList = (items)=>{
+    list.innerHTML = items.map(job=>`
+      <div class="job-card" data-role="${job.roleKey}" data-dept="${job.deptKey}">
+        <div class="job-head">
+          <div>
+            <div class="job-title">${job.roleName}</div>
+            <div class="hint">${job.deptName} • Openings: ${job.openings}</div>
+          </div>
+          <div class="job-actions">
+            <button class="btn-ghost toggle">View JD</button>
+            <button class="btn-primary glow apply" data-nav="#/candidates">Screen</button>
+          </div>
+        </div>
+        <div class="job-body">
+          <div class="hint">Paste the final JD content here for ${job.roleName}.</div>
+          <ul>
+            <li>Overview: Responsibilities and objectives.</li>
+            <li>Requirements: Skills, experience, education.</li>
+            <li>Nice-to-have: Certifications, tools.</li>
+          </ul>
+        </div>
+      </div>
+    `).join('');
+    // bind toggles
+    list.querySelectorAll('.toggle').forEach(btn=>{
+      btn.onclick = (e)=>{
+        const body = e.target.closest('.job-card').querySelector('.job-body');
+        body.classList.toggle('open');
+      };
+    });
+    list.querySelectorAll('.apply').forEach(btn=>{
+      btn.onclick = ()=> navigate('/candidates');
+    });
+  };
+
+  renderList(roles);
+
+  // Search
+  const search = $('#jobSearch');
+  search.oninput = ()=>{
+    const q = search.value.toLowerCase();
+    const filtered = roles.filter(r=> (r.roleName.toLowerCase().includes(q) || r.deptName.toLowerCase().includes(q)));
+    renderList(filtered);
+  };
+}
+
+// Render Interviews
+async function renderInterviews(){
+  if (!requireAuth()) return;
+  app.innerHTML = $('#interviews-tpl').innerHTML;
+  // Fake schedule rows
+  const rows = [
+    ['Finance','financial analyst','ANJALI JOSEPH','HR Screen','Priya S','2025-09-01','15:00','Scheduled'],
+    ['Marketing','marketing manager','AKSHIN','Panel','Ravi T','2025-09-01','16:30','Scheduled'],
+    ['Operations','operations team lead','PRIYA SHARMA','Tech','Divya N','2025-09-02','11:00','Completed'],
+    ['Finance','fpa analyst','MICHAEL MORONNE','Final','CFO','2025-09-03','12:00','Pending']
+  ];
+  const tbody = $('#interviewsBody');
+  tbody.innerHTML = rows.map(r=>`<tr>${r.map(c=>`<td>${c}</td>`).join('')}</tr>`).join('');
+}
+
+// Render Reports
+async function renderReports(){
+  if (!requireAuth()) return;
+  app.innerHTML = $('#reports-tpl').innerHTML;
+  // Fake KPIs
+  $('#kpiTTF').textContent = '24';
+  $('#kpiOAR').textContent = '78%';
+  $('#kpiI2H').textContent = '4.2:1';
+  $('#kpiConv').textContent = '12%';
+
+  // Charts (use Chart.js)
+  const funnel = document.getElementById('reportFunnel');
+  const sources = document.getElementById('reportSources');
+  if (typeof Chart !== 'undefined'){
+    new Chart(funnel, {
+      type:'bar',
+      data:{
+        labels:['Sourced','Applied','Screen','Interview','Offer','Hired'],
+        datasets:[{label:'Pipeline', data:[320,220,140,75,30,18], backgroundColor:'#16a6ff88'}]
+      },
+      options:{animation:{duration:700}, plugins:{legend:{display:false}}, scales:{y:{beginAtZero:true}}}
+    });
+    new Chart(sources, {
+      type:'doughnut',
+      data:{
+        labels:['LinkedIn','Referral','Job Board','Campus','Direct'],
+        datasets:[{data:[42,18,22,10,8], backgroundColor:['#00e5c388','#16a6ff88','#a66bff88','#ffcb1f88','#ff6b6b88']}]
+      },
+      options:{plugins:{legend:{position:'bottom'}}}
+    });
+  }
+}
 
 let CONFIG = null;
 let session = { loggedIn: false };
@@ -153,3 +270,4 @@ window.addEventListener('load', ()=>{
   });
   router();
 });
+
