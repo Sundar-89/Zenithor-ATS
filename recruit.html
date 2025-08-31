@@ -95,8 +95,52 @@
       <div class="hud-particles"></div>
     </section>
   </template>
+<!-- Jobs -->
+<template id="jobs-tpl">
+  <section class="wrap">
+    <h2>Job Openings</h2>
+    <input id="jobSearch" class="field-input" placeholder="Search roles..." />
+    <div id="jobsList" class="jobs-list"></div>
+  </section>
+</template>
+
+<!-- Interviews -->
+<template id="interviews-tpl">
+  <section class="wrap">
+    <h2>Interview Tracker</h2>
+    <div class="table-wrap">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Department</th><th>Role</th><th>Candidate</th><th>Round</th>
+            <th>Interviewer</th><th>Date</th><th>Time</th><th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="interviewsBody"></tbody>
+      </table>
+    </div>
+  </section>
+</template>
+
+<!-- Reports -->
+<template id="reports-tpl">
+  <section class="wrap">
+    <h2>Reports</h2>
+    <div class="kpi-grid">
+      <div class="kpi"><div class="kpi-num" id="kpiTTF">—</div><div class="kpi-label">Avg Time to Fill (days)</div></div>
+      <div class="kpi"><div class="kpi-num" id="kpiOAR">—</div><div class="kpi-label">Offer Acceptance Rate</div></div>
+      <div class="kpi"><div class="kpi-num" id="kpiI2H">—</div><div class="kpi-label">Interview-to-Hire</div></div>
+      <div class="kpi"><div class="kpi-num" id="kpiConv">—</div><div class="kpi-label">Pipeline Conversion</div></div>
+    </div>
+    <div class="widgets">
+      <div class="widget"><canvas id="reportFunnel"></canvas></div>
+      <div class="widget"><canvas id="reportSources"></canvas></div>
+    </div>
+  </section>
+</template>
 
   <script type="module" src="assets/js/app.js"></script>
   <script type="module" src="assets/js/dashboard.js"></script>
 </body>
 </html>
+
