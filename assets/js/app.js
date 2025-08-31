@@ -92,7 +92,7 @@ async function renderDepartments() {
   app.innerHTML = $('#candidates-tpl').innerHTML;
   const cfg = await loadConfig();
 
-  // Progress per department (Step 3 optional)
+  // Progress per department (completed designations)
   const picks = JSON.parse(localStorage.getItem('zr_best') || '{}');
 
   const grid = $('#deptGrid');
