@@ -282,7 +282,40 @@ async function renderReports(){
   $('#kpiOAR').textContent = '78%';
   $('#kpiI2H').textContent = '4.2:1';
   $('#kpiConv').textContent = '12%';
+  // Build picks summary from localStorage and config
+const cfg = await loadConfig(); // if not present yet at top of renderReports, add it
+const picks = JSON.parse(localStorage.getItem('zr_best') || '{}');
+const rows = [];
+Object.entries(cfg.departments).forEach(([deptKey, dep])=>{
+Object.entries(dep.designations).forEach(([roleKey, files])=>{
+const key = ${deptKey}:${roleKey};
+if (picks[key] !== undefined) {
+const idx = picks[key];
+const filename = files[idx];
+rows.push([dep.name, roleKey.replace(/-/g,' '), ${idx+1}, filename]);
+}
+});
+});
+const body = document.getElementById('picksBody');
+body.innerHTML = rows.length ? rows.map(r=><tr>${r.map(c=><td>${c}</td>).join('')}</tr>).join('') : <tr><td colspan="4" class="hint">No selections yet.</td></tr>;
 
+// Download JSON
+document.getElementById('downloadPicksBtn').onclick = ()=>{
+const blob = new Blob([JSON.stringify({ selections: picks }, null, 2)], { type: 'application/json' });
+const a = document.createElement('a');
+a.href = URL.createObjectURL(blob);
+a.download = 'selections.json';
+a.click();
+URL.revokeObjectURL(a.href);
+};
+
+// Clear demo
+document.getElementById('clearDemoBtn').onclick = ()=>{
+localStorage.removeItem('zr_best');
+alert('Demo data cleared. Reloading summary.');
+// Re-render the route to refresh table; simplest is router()
+router();
+};
   const funnel = document.getElementById('reportFunnel');
   const sources = document.getElementById('reportSources');
   if (typeof Chart !== 'undefined'){
@@ -332,4 +365,5 @@ localStorage.setItem('zr_theme', val);
 });
 }
 }
+
 
