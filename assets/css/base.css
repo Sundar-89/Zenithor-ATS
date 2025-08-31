@@ -3,7 +3,27 @@
   --accent:#00e5c3; --accent2:#16a6ff; --muted:#7f8cad;
   --card:#0f1630; --glow:0 0 24px rgba(0,229,195,.35);
   --border:1px solid rgba(255,255,255,.08);
+  --glass: rgba(255,255,255,.06);
 }
+
+/* Neon theme */
+:root[data-theme="neon"]{
+  --bg:#05060e; --panel:#0a0f27; --text:#dff8ff;
+  --accent:#19f0ff; --accent2:#8a2eff; --muted:#9fb6c6;
+  --card:#0a102c; --glow:0 0 28px rgba(25,240,255,.45), 0 0 50px rgba(138,46,255,.25);
+  --border:1px solid rgba(180,220,255,.14);
+  --glass: rgba(138,46,255,.10);
+}
+
+/* Aurora theme */
+:root[data-theme="aurora"]{
+  --bg:#07121b; --panel:#0b1b2a; --text:#e6fbff;
+  --accent:#38f9d7; --accent2:#4facfe; --muted:#a9c7d1;
+  --card:#0a1a2b; --glow:0 0 26px rgba(56,249,215,.35), 0 0 44px rgba(79,172,254,.20);
+  --border:1px solid rgba(200,240,255,.12);
+  --glass: rgba(79,172,254,.10);
+}
+
 *{box-sizing:border-box}
 html,body{height:100%}
 body{margin:0;background:var(--bg);color:var(--text);font-family:Poppins,system-ui,Arial}
@@ -53,4 +73,5 @@ a{color:var(--text);text-decoration:none}
 .kpi-num{font-size:32px;font-weight:800}
 .kpi-label{color:var(--muted)}
 @media(max-width:960px){.jobs-list{grid-template-columns:1fr}.kpi-grid{grid-template-columns:repeat(2,1fr)}}
+
 
