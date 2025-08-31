@@ -308,31 +308,29 @@ async function renderReports(){
 }
 
 // Wiring
+window.addEventListener('hashchange', router);
 window.addEventListener('load', ()=>{
-  document.getElementById('logoutBtn')?.addEventListener('click', ()=>{
-    localStorage.removeItem('zr_session');
-    localStorage.removeItem('zr_best');
-    session.loggedIn = false;
-    setAuthUI();
-    navigate('/login');
-  });
-  initTheme();
-  router();
+document.getElementById('logoutBtn')?.addEventListener('click', ()=>{
+localStorage.removeItem('zr_session');
+localStorage.removeItem('zr_best');
+session.loggedIn = false;
+setAuthUI();
+navigate('/login');
 });
+initTheme();
+router();
+});
+
 function initTheme() {
-  const sel = document.getElementById('themeSelect');
-  const saved = localStorage.getItem('zr_theme') || 'default';
-  document.documentElement.setAttribute('data-theme', saved);
-  if (sel) {
-    sel.value = saved;
-    sel.addEventListener('change', ()=>{
-      const val = sel.value || 'default';
-      document.documentElement.setAttribute('data-theme', val);
-      localStorage.setItem('zr_theme', val);
-    });
-  }
+const sel = document.getElementById('themeSelect');
+const saved = localStorage.getItem('zr_theme') || 'default';
+document.documentElement.setAttribute('data-theme', saved);
+if (sel) {
+sel.value = saved;
+sel.addEventListener('change', ()=>{
+const val = sel.value || 'default';
+document.documentElement.setAttribute('data-theme', val);
+localStorage.setItem('zr_theme', val);
+});
 }
-
-
-
-
+}
