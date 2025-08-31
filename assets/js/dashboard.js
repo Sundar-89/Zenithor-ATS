@@ -10,7 +10,8 @@ window.renderDashboardCharts = function(cfg){
       labels:['Sourced','Applied','Screen','Interview','Offer','Hired'],
       datasets:[{label:'Pipeline', data: cfg.widgets.pipeline, backgroundColor:'#16a6ff88'}]
     },
-    options:{plugins:{legend:{display:false}}, scales:{y:{beginAtZero:true}}}
+    options:{plugins:{legend:{display:false}}, scales:{y:{beginAtZero:true}}},
+    options:{ animation:{ duration:700, easing:'easeOutQuart' }, plugins:{ legend:{ display:false } }, scales:{ y:{ beginAtZero:true } } }
   });
 
   const stageData = cfg.widgets.stages;
@@ -23,3 +24,4 @@ window.renderDashboardCharts = function(cfg){
     options:{plugins:{legend:{position:'bottom'}}}
   });
 };
+
