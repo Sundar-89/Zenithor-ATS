@@ -18,4 +18,30 @@
 @keyframes parallax{0%{background-position:0 0,0 0,0 0}100%{background-position:1000px 500px, -800px 600px, 600px -400px}}
 .hud-title{letter-spacing:.5px;text-transform:uppercase;color:#cfeaff}
 .glow{box-shadow:0 0 20px rgba(0,229,195,.35), 0 0 40px rgba(22,166,255,.15)}
+/* Resume image reveal */
+.viewer-stage img{
+  transform: scale(0.985);
+  opacity: 0;
+  animation: imgIn .5s ease forwards;
+}
+@keyframes imgIn{
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* Glint sweep overlay */
+.hud-glint{
+  position:absolute; inset:0; pointer-events:none;
+  background: linear-gradient(115deg, transparent 40%, rgba(255,255,255,.12) 50%, transparent 60%);
+  transform: translateX(-120%);
+  animation: glint 1.2s ease;
+  mix-blend-mode: screen;
+}
+@keyframes glint{ 
+  0%{ transform: translateX(-120%) } 
+  100%{ transform: translateX(120%) } 
+}
+
+/* Subtle hover parallax */
+.viewer-stage:hover img{ transform: scale(1.01) }
+
 
