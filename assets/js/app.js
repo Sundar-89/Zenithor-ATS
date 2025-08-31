@@ -333,8 +333,6 @@ function initTheme() {
   }
 }
 
-  router();
-);
 
 
 
