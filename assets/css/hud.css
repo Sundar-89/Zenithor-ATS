@@ -1,10 +1,12 @@
-.hud-bg{background:
- radial-gradient(1200px 600px at 80% -10%, rgba(0,229,195,.15), transparent 60%),
- radial-gradient(1000px 500px at 10% 110%, rgba(22,166,255,.12), transparent 60%)}
-.hud-overlay{position:absolute;inset:0;pointer-events:none;
- background:
-  linear-gradient(115deg, rgba(0,229,195,.08), transparent 30%, rgba(22,166,255,.06) 60%, transparent 80%),
-  repeating-linear-gradient(90deg, rgba(255,255,255,.04) 0 1px, transparent 1px 3px)}
+.hud-bg{
+  background:
+   radial-gradient(1200px 600px at 80% -10%, color-mix(in srgb, var(--accent) 25%, transparent), transparent 60%),
+   radial-gradient(1000px 500px at 10% 110%, color-mix(in srgb, var(--accent2) 20%, transparent), transparent 60%);
+}
+.hud-overlay{ background:
+  linear-gradient(115deg, color-mix(in srgb, var(--accent) 20%, transparent), transparent 30%, color-mix(in srgb, var(--accent2) 16%, transparent) 60%, transparent 80%),
+  repeating-linear-gradient(90deg, rgba(255,255,255,.05) 0 1px, transparent 1px 3px)
+}
 .hud-scanlines{position:absolute;inset:0;pointer-events:none;
  background:repeating-linear-gradient(180deg, rgba(255,255,255,.03) 0 2px, transparent 2px 4px);
  mix-blend-mode:screen;animation:scan 6s linear infinite}
@@ -16,3 +18,4 @@
 @keyframes parallax{0%{background-position:0 0,0 0,0 0}100%{background-position:1000px 500px, -800px 600px, 600px -400px}}
 .hud-title{letter-spacing:.5px;text-transform:uppercase;color:#cfeaff}
 .glow{box-shadow:0 0 20px rgba(0,229,195,.35), 0 0 40px rgba(22,166,255,.15)}
+
