@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Zenithor Recruit</title>
+  <link rel="stylesheet" href="assets/css/base.css" />
+  <link rel="stylesheet" href="assets/css/hud.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <header class="zr-header">
+    <div class="brand">Zenithor Recruit</div>
+    <nav class="zr-nav" data-auth="true" style="display:none">
+      <a href="#/home">Home</a>
+      <a href="#/candidates">Candidates</a>
+      <a href="#/jobs">Job Openings</a>
+      <a href="#/interviews">Interviews</a>
+      <a href="#/reports">Reports</a>
+      <a href="#/settings">Settings</a>
+      <button id="logoutBtn" class="btn-ghost">Logout</button>
+    </nav>
+  </header>
+
+  <main id="app"></main>
+
+  <template id="login-tpl">
+    <section class="login">
+      <div class="login-card hud-card">
+        <h1 class="hud-title">ATS Login</h1>
+        <div class="field">
+          <label>Username</label>
+          <input type="text" id="loginUser" value="admin@zenithor" />
+        </div>
+        <div class="field">
+          <label>Password</label>
+          <input type="password" id="loginPass" value="Recruit@2025" />
+        </div>
+        <button id="loginBtn" class="btn-primary glow">Login</button>
+        <p class="hint">Demo: Click Login to continue.</p>
+      </div>
+    </section>
+  </template>
+
+  <template id="home-tpl">
+    <section class="wrap">
+      <h2>Overview</h2>
+      <div class="widgets">
+        <div class="widget"><canvas id="pipelineChart"></canvas></div>
+        <div class="widget"><canvas id="stageChart"></canvas></div>
+        <div class="widget card-num"><div id="openReqsNum">0</div><span>Open Reqs</span></div>
+        <div class="widget card-num"><div id="newCandsNum">0</div><span>New Candidates</span></div>
+        <div class="widget list" id="interviewsList"></div>
+        <div class="widget list" id="tasksList"></div>
+      </div>
+    </section>
+  </template>
+
+  <template id="candidates-tpl">
+    <section class="wrap">
+      <h2>Departments</h2>
+      <div id="deptGrid" class="grid-3"></div>
+    </section>
+  </template>
+
+  <template id="designation-tpl">
+    <section class="wrap">
+      <button class="btn-ghost" data-nav="#/candidates">← Back</button>
+      <h2 id="designationTitle"></h2>
+      <div id="candGrid" class="grid-4"></div>
+    </section>
+  </template>
+
+  <template id="viewer-tpl">
+    <section class="viewer hud-bg">
+      <div class="hud-overlay"></div>
+      <div class="viewer-bar">
+        <button class="btn-ghost" id="backToDesignation">← Back</button>
+        <div class="viewer-title" id="viewerTitle"></div>
+        <div class="viewer-actions">
+          <button class="btn-ghost" id="prevBtn">Prev</button>
+          <button class="btn-ghost" id="nextBtn">Next</button>
+          <button class="btn-primary glow" id="selectBestBtn">Select Best</button>
+        </div>
+      </div>
+      <div class="viewer-stage">
+        <img id="resumeImage" alt="Resume" />
+        <div class="hud-widgets">
+          <div class="hud-chip">Dept: <span id="hudDept"></span></div>
+          <div class="hud-chip">Role: <span id="hudRole"></span></div>
+          <div class="hud-chip">Index: <span id="hudIndex"></span></div>
+        </div>
+      </div>
+      <div class="hud-scanlines"></div>
+      <div class="hud-particles"></div>
+    </section>
+  </template>
+
+  <script type="module" src="assets/js/app.js"></script>
+  <script type="module" src="assets/js/dashboard.js"></script>
+</body>
+</html>

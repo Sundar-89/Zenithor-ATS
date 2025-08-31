@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zenithor - Redefining Energy Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
+    <style>
+        :root {
+            --primary: #004b6b;
+            --secondary: #0077a1;
+            --accent: #00c2ff;
+            --light: #f4f8fb;
+            --dark: #003b56;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-color: var(--light);
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 10px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+
+        .logo {
+            height: 160px;
+            margin-right: 15px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: var(--dark);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 20px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .hero {
+            background-image: linear-gradient(rgba(0, 75, 107, 0.7), rgba(0, 119, 161, 0.7)), url('https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1472&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 120px 20px;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .section {
+            padding: 60px 40px;
+            margin: 30px auto;
+            max-width: 1200px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .section h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--primary);
+            font-size: 2.5rem;
+            position: relative;
+        }
+
+        .section h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+
+        .mission-vision {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .mission-vision div {
+            flex: 1 1 400px;
+            padding: 30px;
+            background: linear-gradient(135deg, #e6f7ff, #ffffff);
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .mission-vision h3 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .mission-vision h3 i {
+            margin-right: 15px;
+            color: var(--secondary);
+        }
+
+        .leadership {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .leader-card {
+            flex: 1 1 200px;
+            max-width: 220px;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .leader-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .leader-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .leader-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .leader-info h3 {
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .leader-info p {
+            color: var(--secondary);
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+
+        .leader-info .social {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .leader-info .social a {
+            color: var(--dark);
+            transition: color 0.3s;
+        }
+
+        .leader-info .social a:hover {
+            color: var(--accent);
+        }
+
+        .core-values, .products {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .core-values div, .products div {
+            flex: 1 1 300px;
+            padding: 30px 20px;
+            border: 2px solid var(--secondary);
+            border-radius: 12px;
+            background: linear-gradient(135deg, #e6f7ff, #ffffff);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .core-values div:hover, .products div:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            border-color: var(--accent);
+        }
+
+        .core-values h3, .products h3 {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .core-values i, .products i {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        /* Swiper Carousel Styles */
+        .swiper {
+            width: 100%;
+            height: 400px;
+            margin: 40px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .swiper-slide {
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 40px;
+            color: white;
+            text-align: left;
+        }
+
+        .swiper-slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.3));
+            z-index: 1;
+        }
+
+        .swiper-slide-content {
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+        }
+
+        .swiper-slide h3 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .swiper-slide p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .swiper-button-next, .swiper-button-prev {
+            color: white !important;
+            background: rgba(255, 255, 255, 0.2);
+            width: 50px !important;
+            height: 50px !important;
+            border-radius: 50%;
+            backdrop-filter: blur(5px);
+        }
+
+        .swiper-button-next::after, .swiper-button-prev::after {
+            font-size: 1.5rem !important;
+        }
+
+        .swiper-pagination-bullet {
+            background: white !important;
+            opacity: 0.7 !important;
+        }
+
+        .swiper-pagination-bullet-active {
+            background: var(--accent) !important;
+            opacity: 1 !important;
+        }
+
+        /* Recruitment Portals Section */
+        .recruitment-portals {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: white;
+        }
+
+        .recruitment-portals h2 {
+            color: white;
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+        }
+
+        .portals-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .portal-card {
+            flex: 1 1 300px;
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            color: var(--dark);
+            text-align: center;
+        }
+
+        .portal-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .portal-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+
+        .portal-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .portal-card p {
+            margin-bottom: 25px;
+        }
+
+        .portal-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--secondary);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .portal-btn:hover {
+            background: var(--primary);
+            transform: scale(1.05);
+        }
+
+        .finance-portal {
+            border-top: 5px solid #4CAF50;
+        }
+
+        .marketing-portal {
+            border-top: 5px solid #FF5722;
+        }
+
+        .operations-portal {
+            border-top: 5px solid #2196F3;
+        }
+
+        /* Job Listings Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 12px;
+            width: 80%;
+            max-width: 900px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close-modal:hover {
+            color: var(--primary);
+        }
+
+        .job-listings h3 {
+            color: var(--primary);
+            margin-top: 30px;
+            font-size: 1.8rem;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        .job-card {
+            background: #f9f9f9;
+            border-left: 4px solid var(--secondary);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .job-card h4 {
+            color: var(--dark);
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+        }
+
+        .job-card .job-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 15px;
+            color: #666;
+        }
+
+        .job-card .job-meta span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .job-card .job-meta i {
+            color: var(--secondary);
+        }
+
+        .job-card .apply-btn {
+            display: inline-block;
+            padding: 8px 20px;
+            background: var(--secondary);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            margin-top: 15px;
+            transition: all 0.3s;
+        }
+
+        .job-card .apply-btn:hover {
+            background: var(--primary);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            background-color: var(--dark);
+            color: white;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .footer-section {
+            flex: 1 1 300px;
+            text-align: left;
+        }
+
+        .footer-section h3 {
+            color: var(--accent);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .footer-section p {
+            margin-bottom: 15px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--accent);
+        }
+
+        .copyright {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            nav {
+                flex-direction: column;
+                align-items: center;
+                padding: 10px 0;
+            }
+            
+            nav a {
+                margin: 5px 0;
+            }
+            
+            .section {
+                padding: 40px 20px;
+            }
+            
+            .swiper {
+                height: 300px;
+            }
+            
+            .modal-content {
+                width: 95%;
+                margin: 10% auto;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="logo.svg" alt="Zenithor Logo" class="logo">
+            <div>
+                <h1>Zenithor</h1>
+                <p>Redefining Energy Solutions</p>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <a href="#about">About Us</a>
+        <a href="#values">Core Values</a>
+        <a href="#leadership">Leadership</a>
+        <a href="#products">Our Products</a>
+        <a href="#recruitment">Careers</a><br>
+        <a href="./recruit.html#/login">Recruiter Portal</a>
+        <a href="#contact">Contact Us</a>
+    </nav>
+
+    <div class="hero">
+        <h1>Empowering Communities Through Renewable Energy</h1>
+        <p>Join us in revolutionizing energy consumption for a sustainable future.</p>
+    </div>
+
+    <section id="about" class="section">
+        <h2>About Us</h2>
+        <p>Founded on a vision of empowering communities and industries through clean, reliable, and innovative energy systems, Zenithor stands at the forefront of renewable power manufacturing. With expertise spanning solar, wind, and hybrid energy systems, we craft cutting-edge solutions tailored for residential, commercial, and industrial applications.</p>
+        
+        <div class="mission-vision">
+            <div>
+                <h3><i class="fas fa-bullseye"></i> Our Vision</h3>
+                <p>To create a world where sustainable energy is accessible to all, powering communities and industries while preserving our planet for future generations. We envision a future where renewable energy solutions are the norm, not the exception, driving economic growth and environmental stewardship simultaneously.</p>
+            </div>
+            <div>
+                <h3><i class="fas fa-rocket"></i> Our Mission</h3>
+                <p>To develop and deliver innovative, reliable, and affordable renewable energy solutions that reduce carbon footprints and energy costs. We are committed to pushing the boundaries of clean energy technology while maintaining the highest standards of quality, integrity, and environmental responsibility in all our operations.</p>
+            </div>
+        </div>
+        
+        <div class="swiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1472&q=80')">
+                    <div class="swiper-slide-content">
+                        <h3>Our Solar Farm</h3>
+                        <p>State-of-the-art solar energy production facility providing clean power to thousands of homes.</p>
+                    </div>
+                </div>
+                <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1472&q=80')">
+                    <div class="swiper-slide-content">
+                        <h3>Innovation Lab</h3>
+                        <p>Where our engineers develop the next generation of renewable energy solutions.</p>
+                    </div>
+                </div>
+                <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1486401899868-0e435ed85128?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')">
+                    <div class="swiper-slide-content">
+                        <h3>Global Operations</h3>
+                        <p>Delivering sustainable energy solutions to communities around the world.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </section>
+
+    <section id="leadership" class="section">
+        <h2>Our Leadership Team</h2>
+        <p>At Zenithor, we're guided by a team of visionary leaders with decades of combined experience in renewable energy, technology, and sustainable business practices.</p>
+        
+        <div class="leadership">
+            <div class="leader-card">
+                <div class="leader-image" style="background-image: url('sundar.jpg')"></div>
+                <div class="leader-info">
+                    <h3>Meenakshi Sundaram</h3>
+                    <p>Chief Executive Officer</p>
+                    <div class="social">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="leader-card">
+                <div class="leader-image" style="background-image: url('bstin.jpg')"></div>
+                <div class="leader-info">
+                    <h3>Arul Bastin</h3>
+                    <p>Chief Technology Officer</p>
+                    <div class="social">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="leader-card">
+                <div class="leader-image" style="background-image: url('https://images.unsplash.com/photo-1607746882042-944635dfe10e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')"></div>
+                <div class="leader-info">
+                    <h3>Debilla Frida</h3>
+                    <p>Chief Financial Officer</p>
+                    <div class="social">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="leader-card">
+                <div class="leader-image" style="background-image: url('Siva.jpg')"></div>
+                <div class="leader-info">
+                    <h3>Sivamani</h3>
+                    <p>Chief Operations Officer</p>
+                    <div class="social">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="leader-card">
+                <div class="leader-image" style="background-image: url('Sri.jpg')"></div>
+                <div class="leader-info">
+                    <h3>Subramaniyan Venkatesh</h3>
+                    <p>Chief Marketing Officer</p>
+                    <div class="social">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="values" class="section">
+        <h2>Our Core Values</h2>
+        <div class="core-values">
+            <div>
+                <i class="fas fa-leaf"></i>
+                <h3>Sustainability</h3>
+                <p>Embedding eco-consciousness in every product and process to minimize environmental impact.</p>
+            </div>
+            <div>
+                <i class="fas fa-lightbulb"></i>
+                <h3>Innovation</h3>
+                <p>Designing cutting-edge systems that push the boundaries of renewable energy technology.</p>
+            </div>
+            <div>
+                <i class="fas fa-handshake"></i>
+                <h3>Integrity</h3>
+                <p>Upholding transparency and ethical standards in all our operations and relationships.</p>
+            </div>
+            <div>
+                <i class="fas fa-people-carry"></i>
+                <h3>Empowerment</h3>
+                <p>Enabling communities to thrive through affordable and accessible energy solutions.</p>
+            </div>
+            <div>
+                <i class="fas fa-medal"></i>
+                <h3>Excellence</h3>
+                <p>Delivering quality products and services that consistently exceed expectations.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="products" class="section">
+        <h2>Our Product Offerings</h2>
+        <div class="products">
+            <div>
+                <i class="fas fa-solar-panel"></i>
+                <h3>Smart Hybrid Energy Solutions</h3>
+                <p>Combining solar, wind, and battery storage for consistent, reliable power in any environment.</p>
+            </div>
+            <div>
+                <i class="fas fa-sun"></i>
+                <h3>Next-Gen Solar Panels</h3>
+                <p>Flexible, ultra-thin panels with 25% higher efficiency for unconventional installations.</p>
+            </div>
+            <div>
+                <i class="fas fa-bolt"></i>
+                <h3>Energy-Positive Smart Grids</h3>
+                <p>Modular systems generating surplus power for complete grid independence and resilience.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="recruitment" class="recruitment-portals">
+        <h2>Join Our Team</h2>
+        <p>We're always looking for talented individuals to join our mission of sustainable energy innovation.</p>
+        
+        <div class="portals-container">
+            <div class="portal-card finance-portal">
+                <div class="portal-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3>Finance</h3>
+                <p>Join our financial team to help drive sustainable investments and manage our growth.</p>
+                <a href="#finance-jobs" class="portal-btn" onclick="openModal('finance')">View Openings</a>
+            </div>
+            
+            <div class="portal-card marketing-portal">
+                <div class="portal-icon">
+                    <i class="fas fa-bullhorn"></i>
+                </div>
+                <h3>Marketing</h3>
+                <p>Help us communicate our mission and products to the world through creative marketing.</p>
+                <a href="#marketing-jobs" class="portal-btn" onclick="openModal('marketing')">View Openings</a>
+            </div>
+            
+            <div class="portal-card operations-portal">
+                <div class="portal-icon">
+                    <i class="fas fa-cogs"></i>
+                </div>
+                <h3>Operations</h3>
+                <p>Be part of the team that ensures our products are delivered efficiently and sustainably.</p>
+                <a href="#operations-jobs" class="portal-btn" onclick="openModal('operations')">View Openings</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Job Listings Modals -->
+    <div id="finance-jobs" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <h2>Finance Department Opportunities</h2>
+            <p>Join our finance team and contribute to sustainable financial strategies that power our renewable energy mission.</p>
+            
+            <div class="job-listings">
+                <h3>Current Open Positions</h3>
+                
+                <div class="job-card">
+                    <h4>Finance Team Lead</h4>
+                    <div class="job-meta">
+                        <span><i class="fas fa-map-marker-alt"></i> San Francisco, CA</span>
+                        <span><i class="fas fa-briefcase"></i> Full-time</span>
+                        <span><i class="fas fa-dollar-sign"></i> $120,000 - $150,000</span>
+                    </div>
+                    <p>Lead our finance team in developing financial strategies that align with our sustainability goals. Oversee budgeting, financial planning, and investment decisions for renewable energy projects.</p>
+                    <a href="#" class="apply-btn">Apply Now</a>
+                </div>
+                
+                <div class="job-card">
+                    <h4>Financial Analyst</h4>
+                    <div class="job-meta">
+                        <span><i class="fas fa-map-marker-alt"></i> Remote</span>
+                        <span><i class="fas fa-briefcase"></i> Full-time</span>
+                        <span><i class="fas fa-dollar-sign"></i> $85,000 - $110,000</span>
+                    </div>
+                    <p>Analyze financial data, prepare reports, and provide insights to support strategic decision-making for our renewable energy initiatives. Evaluate investment opportunities and financial performance.</p>
+                    <a href="#" class="apply-btn">Apply Now</a>
+                </div>
+                
+                <div class="job-card">
+                    <h4>Accounting Executive</h4>
+                    <div class="job-meta">
+                        <span><i class="fas fa-map-marker-alt"></i> New York, NY</span>
+                        <span><i class="fas fa-briefcase"></i> Full-time</span>
+                        <span><i class="fas fa-dollar-sign"></i> $70,000 - $90,000</span>
+                    </div>
+                    <p>Manage day-to-day accounting operations, ensure compliance with financial regulations, and maintain accurate financial records for our sustainable energy projects.</p>
+                    <a href="#" class="apply-btn">Apply Now</a>
+                </div>
+                
+                <div class="job-card">
+                    <h4>Financial Planning and Analyst</h4>
+                    <div class="job-meta">
+                        <span><i class="fas fa-map-marker-alt"></i> Chicago, IL</span>
+                        <span><i class="fas fa-briefcase"></i> Full-time</span>
+                        <span><i class="fas fa-dollar-sign"></i> $95,000 - $120,000</span>
+                    </div>
+                    <p>Develop financial models, forecasts, and strategic plans to support our growth in the renewable energy sector. Analyze market trends and provide recommendations.</p>
+                    <a href="#" class="apply-btn">Apply Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="marketing-jobs" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <h2>Marketing Department Opportunities</h2>
+            <p>Help us tell the story of renewable energy and drive adoption of sustainable solutions through innovative marketing.</p>
+            
+            <div class="job-listings">
+                <h3>Current Open Positions</h3>
+                
+                <div class="job-card">
+                    <h4>Marketing Team Lead</h4>
+                    <div class="job-meta">
+                        <span><i class="fas fa-map-marker-alt"></i> Austin, TX</span>
+                        <span><i class="fas fa-briefcase"></i> Full-time</span>
+                        <span><i class="fas fa-dollar-sign"></i> $110,000 - $140,000</span>
+                    </div>
+                    <p>Lead our marketing team in developing and executing strategies that promote our renewable energy solutions. Oversee brand development, campaigns, and market research.</p>
+                    <a href="#" class="apply-btn">Apply Now</a>
+                </div>
+                
+                <div class="job-card">
+                    <h4>Marketing Manager</h4>
+                    <div class="job-meta">
+                        <span><i class="fas fa-map-marker-alt"></i> Remote</span>
+                        <span><i class="fas fa-briefcase"></i> Full-time</span>
+                        <span><i class="fas fa-dollar-sign"></i> $90,000 - $115,000</span>
+                    </div>
+                    <p>Develop and implement marketing campaigns that educate and engage audiences about renewable energy. Manage digital marketing channels and content strategy.</p>
+                    <a href="#" class="apply-btn">Apply Now</a>
+                </div>
+                
+                <div class="job-card">
+                    <h4>Product Marketing Specialist</h4>
+                    <div class="job-meta">
+                        <span><i class="fas fa-map-marker-alt"></i> Boston, MA</span>
+                        <span><i class="fas fa-briefcase"></i> Full-time</span>
+                        <span><i class="fas fa-dollar-sign"></i> $75,000 - $95,000</span>
+                    </div>
+                    <p>Create compelling messaging and positioning for our renewable energy products. Develop marketing materials and sales enablement tools.</p>
+                    <a href="#" class="apply-btn">Apply Now</a>
+                </div>
+                
+                <div class="job-card">
+                    <h4>Business Development Associate</h4>
+                    <div class="job-meta">
+                        <span><i class="fas fa-map-marker-alt"></i> Multiple Locations</span>
+                        <span><i class="fas fa-briefcase"></i> Full-time</span>
+                        <span><i class="fas fa-dollar-sign"></i> $80,000 - $100,000</span>
+                    </div>
+                    <p>Identify and develop new business opportunities in the renewable energy sector. Build relationships with partners and clients to expand our market reach.</p>
+                    <a href="#" class="apply-btn">Apply Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="operations-jobs" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <h2>Operations Department Opportunities</h2>
+            <p>Join our operations team to ensure the efficient and sustainable delivery of renewable energy solutions.</p>
+            
+            <div class="job-listings">
+                <h3>Current Open Positions</h3>
+                
+                <div class="job-card">
+                    <h4>Operations Team Lead</h4>
+                    <div class="job-meta">
+                        <span><i class="fas fa-map-marker-alt"></i> Houston, TX</span>
+                        <span><i class="fas fa-briefcase"></i> Full-time</span>
+                        <span><i class="fas fa-dollar-sign"></i> $105,000 - $135,000</span>
+                    </div>
+                    <p>Lead our operations team in implementing efficient processes for manufacturing and delivering renewable energy solutions. Ensure operational excellence and sustainability.</p>
+                    <a href="#" class="apply-btn">Apply Now</a>
+                </div>
+                
+                <div class="job-card">
+                    <h4>Operations Manager</h4>
+                    <div class="job-meta">
+                        <span><i class="fas fa-map-marker-alt"></i> Denver, CO</span>
+                        <span><i class="fas fa-briefcase"></i> Full-time</span>
+                        <span><i class="fas fa-dollar-sign"></i> $95,000 - $120,000</span>
+                    </div>
+                    <p>Manage day-to-day operations of our renewable energy facilities. Oversee production, logistics, and quality control processes.</p>
+                    <a href="#" class="apply-btn">Apply Now</a>
+                </div>
+                
+                <div class="job-card">
+                    <h4>Supply Chain Executive</h4>
+                    <div class="job-meta">
+                        <span><i class="fas fa-map-marker-alt"></i> Seattle, WA</span>
+                        <span><i class="fas fa-briefcase"></i> Full-time</span>
+                        <span><i class="fas fa-dollar-sign"></i> $85,000 - $110,000</span>
+                    </div>
+                    <p>Develop and maintain sustainable supply chain strategies for our renewable energy components. Ensure ethical sourcing and efficient logistics.</p>
+                    <a href="#" class="apply-btn">Apply Now</a>
+                </div>
+                
+                <div class="job-card">
+                    <h4>Process Improvement Executive</h4>
+                    <div class="job-meta">
+                        <span><i class="fas fa-map-marker-alt"></i> Phoenix, AZ</span>
+                        <span><i class="fas fa-briefcase"></i> Full-time</span>
+                        <span><i class="fas fa-dollar-sign"></i> $90,000 - $115,000</span>
+                    </div>
+                    <p>Identify and implement process improvements to enhance efficiency and sustainability in our renewable energy operations. Lead lean and green initiatives.</p>
+                    <a href="#" class="apply-btn">Apply Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Zenithor</h3>
+                <p>Leading the renewable energy revolution with innovative solutions for a sustainable future.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <p><a href="#about" style="color: white;">About Us</a></p>
+                <p><a href="#leadership" style="color: white;">Leadership</a></p>
+                <p><a href="#products" style="color: white;">Our Products</a></p>
+                <p><a href="#recruitment" style="color: white;">Careers</a></p>
+                <p><a href="#contact" style="color: white;">Contact</a></p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-map-marker-alt"></i> 123 Energy Way, Solar City</p>
+                <p><i class="fas fa-phone"></i> (555) 123-4567</p>
+                <p><i class="fas fa-envelope"></i> <a href="mailto:info@zenithor.com" style="color: var(--accent);">info@zenithor.com</a></p>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2024 Zenithor Energy Solutions. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <script>
+        // Initialize Swiper
+        const swiper = new Swiper('.swiper', {
+            loop: true,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Modal functionality
+        function openModal(department) {
+            document.getElementById(department + '-jobs').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeModal() {
+            document.querySelectorAll('.modal').forEach(modal => {
+                modal.style.display = 'none';
+            });
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Close modal when clicking outside content
+        window.onclick = function(event) {
+            document.querySelectorAll('.modal').forEach(modal => {
+                if (event.target == modal) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

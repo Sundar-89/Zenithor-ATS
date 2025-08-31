@@ -1,0 +1,39 @@
+{
+  "widgets": {
+    "openReqs": 12,
+    "newCandidates": 18,
+    "pipeline": [40, 28, 16, 9, 5, 3],
+    "stages": {"Sourced": 22, "Screen": 14, "Interview": 8, "Offer": 3, "Hired": 2},
+    "interviews": ["Finance Analyst - 3:00 PM", "Marketing Manager - 4:30 PM", "Ops Lead - 6:00 PM"],
+    "tasks": ["Review FP&A resumes", "Confirm panel availability", "Export shortlist"]
+  },
+  "departments": {
+    "finance": {
+      "name": "Finance",
+      "designations": {
+        "finance-team-lead": ["PRIYA MEHTA.png","SARAH ABRAHAM.png","AHMED KHAN.png","JOHN ANDERSON.png"],
+        "financial-analyst": ["MARIA CHEN.png","ANJALI JOSEPH.png","DAVID MITCHELL.png","KEVIN LOPEZ.png"],
+        "accounting-executive": ["SHOBITA AARAV.png","PARVATHY PRABHU.png","RAHUL ABRAHAM.png","RIYA RANGANATHAN.png"],
+        "fpa-analyst": ["MICHAEL MORONNE.png","ETHAN SAMUEL.png","IMMANUEL DANIEL.png","JEREMY FISHER.png"]
+      }
+    },
+    "marketing": {
+      "name": "Marketing",
+      "designations": {
+        "marketing-team-lead": ["GALWIN THEO.png", "DANITA HAVION.png", "ATARAH.png", "AJAY JOSEPH.png"],
+        "marketing-manager": ["AKSHIN.png","DHANUSH.png","GLADYS.png","SAHRIQ.png"],
+        "product-marketing-specialist": ["ARJUN.png","VIJAY.png","SURYA.png","JENIFER.PNG"],
+        "business-development-associate": ["GEORGIA.png", "LYDIA SAMUEL.png", "AGUSTIN.png", "CHARLES.png"]
+      }
+    },
+    "operations": {
+      "name": "Operations",
+      "designations": {
+        "operations-team-lead": ["PRIYA SHARMA.png", "AHMED KHAN.png", "AJAY SHARMA.png", "DAVID MILLER.png"],
+        "operations-manager": ["SARAH WILLIAMS.png", "VINAY PATEL.png", "POOJA MEHTA.png", "REBECCA LIN.png"],
+        "supply-chain-executive": ["RAHUL GUPTA.png", "RAHUL VERMA.png", "SIMRAN KAUR.png", "AHMED SIDDIQUE.png"],
+        "process-improvement-executive": ["ARJUN PRAKASH.png", "DIVYA NAIR.png", "RAJESH MALHOTRA.png", "SNEHA ARORA.png"]
+      }
+    }
+  }
+}
