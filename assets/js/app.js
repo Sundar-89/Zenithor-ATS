@@ -82,7 +82,7 @@ async function renderHome() {
   // Lists
   $('#interviewsList').innerHTML = `<h3>Interviews This Week</h3><ul>${cfg.widgets.interviews.map(i=>`<li>${i}</li>`).join('')}</ul>`;
   $('#tasksList').innerHTML = `<h3>Tasks</h3><ul>${cfg.widgets.tasks.map(t=>`<li>${t}</li>`).join('')}</ul>`;
-  // Charts
+  // Charts (from dashboard.js)
   if (window.renderDashboardCharts) window.renderDashboardCharts(cfg);
 }
 
@@ -91,13 +91,22 @@ async function renderDepartments() {
   if (!requireAuth()) return;
   app.innerHTML = $('#candidates-tpl').innerHTML;
   const cfg = await loadConfig();
+
+  // Progress per department (Step 3 optional)
+  const picks = JSON.parse(localStorage.getItem('zr_best') || '{}');
+
   const grid = $('#deptGrid');
-  grid.innerHTML = Object.entries(cfg.departments).map(([key,dep])=>`
-    <div class="tile" data-dept="${key}">
-      <h3>${dep.name}</h3>
-      <p>4 designations</p>
-    </div>
-  `).join('');
+  grid.innerHTML = Object.entries(cfg.departments).map(([key,dep])=>{
+    const total = Object.keys(dep.designations).length;
+    const done = Object.keys(dep.designations).filter(roleKey => picks[`${key}:${roleKey}`] !== undefined).length;
+    return `
+      <div class="tile" data-dept="${key}">
+        <h3>${dep.name}</h3>
+        <p>${total} designations • ${done}/${total} completed</p>
+      </div>
+    `;
+  }).join('');
+
   grid.querySelectorAll('.tile').forEach(el=>{
     el.onclick = () => {
       ctx.deptKey = el.dataset.dept;
@@ -114,11 +123,23 @@ async function renderDesignation(params) {
   const deptKey = params.get('dept');
   const dep = cfg.departments[deptKey];
   $('#designationTitle').textContent = `${dep.name} — Select designation`;
+
+  const picks = JSON.parse(localStorage.getItem('zr_best') || '{}');
+
   const grid = $('#candGrid');
- grid.innerHTML = Object.keys(dep.designations).map(roleKey => {
-const done = picks[${deptKey}:${roleKey}] !== undefined;
-return <div class="tile" data-role="${roleKey}"> <div style="display:flex;align-items:center;justify-content:space-between;gap:8px"> <h3 style="margin:0">${roleKey.replace(/-/g,' ')}</h3> ${done ? '<span class="badge-done">Completed</span>' : ''} </div> <p>4 resumes</p> </div> ;
-}).join('');
+  grid.innerHTML = Object.keys(dep.designations).map(roleKey => {
+    const done = picks[`${deptKey}:${roleKey}`] !== undefined;
+    return `
+      <div class="tile" data-role="${roleKey}">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+          <h3 style="margin:0">${roleKey.replace(/-/g,' ')}</h3>
+          ${done ? '<span class="badge-done">Completed</span>' : ''}
+        </div>
+        <p>4 resumes</p>
+      </div>
+    `;
+  }).join('');
+
   grid.querySelectorAll('.tile').forEach(el=>{
     el.onclick = () => {
       ctx.deptKey = deptKey;
@@ -164,7 +185,6 @@ async function renderViewer(params) {
 async function renderJobs(){
   if (!requireAuth()) return;
   app.innerHTML = $('#jobs-tpl').innerHTML;
-
   const cfg = await loadConfig();
 
   // Load JDs
@@ -273,49 +293,18 @@ async function renderInterviews(){
   tbody.innerHTML = rows.map(r=>`<tr>${r.map(c=>`<td>${c}</td>`).join('')}</tr>`).join('');
 }
 
-// -------- Reports --------
+// -------- Reports (with Summary, Download, Clear) --------
 async function renderReports(){
   if (!requireAuth()) return;
   app.innerHTML = $('#reports-tpl').innerHTML;
 
+  // KPIs
   $('#kpiTTF').textContent = '24';
   $('#kpiOAR').textContent = '78%';
   $('#kpiI2H').textContent = '4.2:1';
   $('#kpiConv').textContent = '12%';
-  // Build picks summary from localStorage and config
-const cfg = await loadConfig(); // if not present yet at top of renderReports, add it
-const picks = JSON.parse(localStorage.getItem('zr_best') || '{}');
-const rows = [];
-Object.entries(cfg.departments).forEach(([deptKey, dep])=>{
-Object.entries(dep.designations).forEach(([roleKey, files])=>{
-const key = ${deptKey}:${roleKey};
-if (picks[key] !== undefined) {
-const idx = picks[key];
-const filename = files[idx];
-rows.push([dep.name, roleKey.replace(/-/g,' '), ${idx+1}, filename]);
-}
-});
-});
-const body = document.getElementById('picksBody');
-body.innerHTML = rows.length ? rows.map(r=><tr>${r.map(c=><td>${c}</td>).join('')}</tr>).join('') : <tr><td colspan="4" class="hint">No selections yet.</td></tr>;
 
-// Download JSON
-document.getElementById('downloadPicksBtn').onclick = ()=>{
-const blob = new Blob([JSON.stringify({ selections: picks }, null, 2)], { type: 'application/json' });
-const a = document.createElement('a');
-a.href = URL.createObjectURL(blob);
-a.download = 'selections.json';
-a.click();
-URL.revokeObjectURL(a.href);
-};
-
-// Clear demo
-document.getElementById('clearDemoBtn').onclick = ()=>{
-localStorage.removeItem('zr_best');
-alert('Demo data cleared. Reloading summary.');
-// Re-render the route to refresh table; simplest is router()
-router();
-};
+  // Charts
   const funnel = document.getElementById('reportFunnel');
   const sources = document.getElementById('reportSources');
   if (typeof Chart !== 'undefined'){
@@ -336,34 +325,79 @@ router();
       options:{plugins:{legend:{position:'bottom'}}}
     });
   }
+
+  // Ensure config is loaded for departments/designations
+  const cfg = await loadConfig();
+
+  // Build picks summary
+  const picks = JSON.parse(localStorage.getItem('zr_best') || '{}');
+  const rows = [];
+  Object.entries(cfg.departments).forEach(([deptKey, dep])=>{
+    Object.entries(dep.designations).forEach(([roleKey, files])=>{
+      const key = `${deptKey}:${roleKey}`;
+      if (picks[key] !== undefined) {
+        const idx = picks[key];
+        const filename = files[idx];
+        rows.push([dep.name, roleKey.replace(/-/g,' '), `${idx+1}`, filename]);
+      }
+    });
+  });
+
+  const body = document.getElementById('picksBody');
+  if (body) {
+    body.innerHTML = rows.length
+      ? rows.map(r => `<tr>${r.map(c => `<td>${c}</td>`).join('')}</tr>`).join('')
+      : `<tr><td colspan="4" class="hint">No selections yet.</td></tr>`;
+  }
+
+  // Download JSON
+  const dlBtn = document.getElementById('downloadPicksBtn');
+  if (dlBtn) {
+    dlBtn.onclick = ()=>{
+      const blob = new Blob([JSON.stringify({ selections: picks }, null, 2)], { type: 'application/json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'selections.json';
+      a.click();
+      URL.revokeObjectURL(a.href);
+    };
+  }
+
+  // Clear demo
+  const clrBtn = document.getElementById('clearDemoBtn');
+  if (clrBtn) {
+    clrBtn.onclick = ()=>{
+      localStorage.removeItem('zr_best');
+      alert('Demo data cleared. Reloading summary.');
+      router();
+    };
+  }
 }
 
-// Wiring
+// -------- Wiring + Theme --------
 window.addEventListener('hashchange', router);
 window.addEventListener('load', ()=>{
-document.getElementById('logoutBtn')?.addEventListener('click', ()=>{
-localStorage.removeItem('zr_session');
-localStorage.removeItem('zr_best');
-session.loggedIn = false;
-setAuthUI();
-navigate('/login');
-});
-initTheme();
-router();
+  document.getElementById('logoutBtn')?.addEventListener('click', ()=>{
+    localStorage.removeItem('zr_session');
+    localStorage.removeItem('zr_best');
+    session.loggedIn = false;
+    setAuthUI();
+    navigate('/login');
+  });
+  initTheme();
+  router();
 });
 
 function initTheme() {
-const sel = document.getElementById('themeSelect');
-const saved = localStorage.getItem('zr_theme') || 'default';
-document.documentElement.setAttribute('data-theme', saved);
-if (sel) {
-sel.value = saved;
-sel.addEventListener('change', ()=>{
-const val = sel.value || 'default';
-document.documentElement.setAttribute('data-theme', val);
-localStorage.setItem('zr_theme', val);
-});
+  const sel = document.getElementById('themeSelect');
+  const saved = localStorage.getItem('zr_theme') || 'default';
+  document.documentElement.setAttribute('data-theme', saved);
+  if (sel) {
+    sel.value = saved;
+    sel.addEventListener('change', ()=>{
+      const val = sel.value || 'default';
+      document.documentElement.setAttribute('data-theme', val);
+      localStorage.setItem('zr_theme', val);
+    });
+  }
 }
-}
-
-
