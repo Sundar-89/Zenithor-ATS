@@ -1,6 +1,6 @@
 // assets/js/app.js
 
-// Small helper
+// Helper
 const $ = (sel, root=document) => root.querySelector(sel);
 const app = $('#app');
 
@@ -16,26 +16,28 @@ const routes = {
   '/reports': renderReports
 };
 
-// Global state
-let CONFIG = null;       // loaded from data/config.json
+// State
+let CONFIG = null;
 let session = { loggedIn: false };
 let ctx = { deptKey: null, roleKey: null, images: [], index: 0 };
 
-// Load config once
+// Load config.json
 async function loadConfig() {
   if (CONFIG) return CONFIG;
   const res = await fetch('data/config.json');
+  if (!res.ok) {
+    console.error('Failed to load config.json:', res.status, res.statusText);
+    throw new Error('config.json load failed');
+  }
   CONFIG = await res.json();
   return CONFIG;
 }
 
-// Auth UI
 function setAuthUI() {
   const nav = document.querySelector('nav[data-auth="true"]');
   if (nav) nav.style.display = session.loggedIn ? 'flex' : 'none';
 }
 
-// Navigation helpers
 function navigate(hash) { window.location.hash = hash; }
 
 function parseHash() {
@@ -58,8 +60,7 @@ function requireAuth() {
   return true;
 }
 
-// ============= Renders =============
-
+// -------- Login --------
 function renderLogin() {
   app.innerHTML = $('#login-tpl').innerHTML;
   $('#loginBtn').onclick = () => {
@@ -70,20 +71,22 @@ function renderLogin() {
   };
 }
 
+// -------- Home (Dashboard) --------
 async function renderHome() {
   if (!requireAuth()) return;
   app.innerHTML = $('#home-tpl').innerHTML;
   const cfg = await loadConfig();
-  // Number cards
+  // Cards
   $('#openReqsNum').textContent = cfg.widgets.openReqs;
   $('#newCandsNum').textContent = cfg.widgets.newCandidates;
   // Lists
   $('#interviewsList').innerHTML = `<h3>Interviews This Week</h3><ul>${cfg.widgets.interviews.map(i=>`<li>${i}</li>`).join('')}</ul>`;
   $('#tasksList').innerHTML = `<h3>Tasks</h3><ul>${cfg.widgets.tasks.map(t=>`<li>${t}</li>`).join('')}</ul>`;
-  // Charts (dashboard.js exposes window.renderDashboardCharts)
+  // Charts
   if (window.renderDashboardCharts) window.renderDashboardCharts(cfg);
 }
 
+// -------- Candidates: Departments --------
 async function renderDepartments() {
   if (!requireAuth()) return;
   app.innerHTML = $('#candidates-tpl').innerHTML;
@@ -103,6 +106,7 @@ async function renderDepartments() {
   });
 }
 
+// -------- Candidates: Designations --------
 async function renderDesignation(params) {
   if (!requireAuth()) return;
   app.innerHTML = $('#designation-tpl').innerHTML;
@@ -129,6 +133,7 @@ async function renderDesignation(params) {
   });
 }
 
+// -------- Viewer --------
 async function renderViewer(params) {
   if (!requireAuth()) return;
   app.innerHTML = $('#viewer-tpl').innerHTML;
@@ -138,7 +143,6 @@ async function renderViewer(params) {
   ctx.deptKey = deptKey; ctx.roleKey = roleKey; ctx.index = i;
   ctx.images = cfg.departments[deptKey].designations[roleKey];
 
-  // Title and controls
   $('#viewerTitle').textContent = `${cfg.departments[deptKey].name} / ${roleKey.replace(/-/g,' ')}`;
   $('#backToDesignation').onclick = () => navigate(`#/designation?dept=${deptKey}`);
   $('#prevBtn').onclick = () => navigate(`#/viewer?dept=${deptKey}&role=${roleKey}&i=${(i+3)%4}`);
@@ -152,31 +156,32 @@ async function renderViewer(params) {
     navigate(`#/designation?dept=${deptKey}`);
   };
 
-  // HUD info
   $('#hudDept').textContent = cfg.departments[deptKey].name;
   $('#hudRole').textContent = roleKey.replace(/-/g,' ');
   $('#hudIndex').textContent = `${i+1}/4`;
-
-  // Image path
   $('#resumeImage').src = `assets/resumes/${deptKey}/${roleKey}/${ctx.images[i]}`;
 }
 
-// ============= Jobs / Interviews / Reports =============
-
+// -------- Jobs (with jd.json) --------
 async function renderJobs(){
   if (!requireAuth()) return;
   app.innerHTML = $('#jobs-tpl').innerHTML;
+
   const cfg = await loadConfig();
 
-  // Load JDs from separate file
+  // Load JDs
   let jd = {};
   try {
-    jd = await fetch('data/jd.json').then(r=>r.json());
+    const r = await fetch('data/jd.json');
+    if (!r.ok) throw new Error('jd.json HTTP '+r.status);
+    jd = await r.json();
+    console.log('JD loaded. Keys:', Object.keys(jd));
   } catch(e) {
+    console.error('Failed to load jd.json:', e);
     jd = {};
   }
 
-  // Flatten 12 roles
+  // Flatten roles from config
   const roles = [];
   Object.entries(cfg.departments).forEach(([deptKey, dep])=>{
     Object.keys(dep.designations).forEach(roleKey=>{
@@ -185,7 +190,7 @@ async function renderJobs(){
         deptName: dep.name,
         roleKey,
         roleName: roleKey.replace(/-/g,' '),
-        openings: 1 // demo
+        openings: 1
       });
     });
   });
@@ -195,10 +200,14 @@ async function renderJobs(){
   const renderList = (items)=>{
     list.innerHTML = items.map(job=>{
       const j = jd[job.roleKey] || {};
+      const hasJD = !!jd[job.roleKey];
+      if (!hasJD) console.warn('Missing JD for roleKey:', job.roleKey);
+
       const resps = (j.responsibilities||[]).map(x=>`<li>${x}</li>`).join('');
       const reqs = (j.requirements||[]).map(x=>`<li>${x}</li>`).join('');
       const quals = (j.qualifications||[]).map(x=>`<li>${x}</li>`).join('');
       const mets = (j.metrics||[]).map(x=>`<li>${x}</li>`).join('');
+
       return `
         <div class="job-card" data-role="${job.roleKey}" data-dept="${job.deptKey}">
           <div class="job-head">
@@ -212,7 +221,7 @@ async function renderJobs(){
             </div>
           </div>
           <div class="job-body">
-            ${j.summary ? `<p>${j.summary}</p>` : `<p class="hint">Summary will appear here.</p>`}
+            ${hasJD && j.summary ? `<p>${j.summary}</p>` : `<p class="hint">JD not found for ${job.roleName}. Check jd.json key "${job.roleKey}".</p>`}
             <h4>Key Responsibilities</h4>
             <ul>${resps || '<li class="hint">—</li>'}</ul>
             <h4>Required Skills and Competencies</h4>
@@ -233,7 +242,7 @@ async function renderJobs(){
         body.classList.toggle('open');
       };
     });
-    // Screen button
+    // Go to screening
     list.querySelectorAll('.apply').forEach(btn=>{
       btn.onclick = ()=> navigate('/candidates');
     });
@@ -241,7 +250,7 @@ async function renderJobs(){
 
   renderList(roles);
 
-  // Search box
+  // Search
   const search = $('#jobSearch');
   search.oninput = ()=>{
     const q = search.value.toLowerCase();
@@ -250,11 +259,11 @@ async function renderJobs(){
   };
 }
 
+// -------- Interviews --------
 async function renderInterviews(){
   if (!requireAuth()) return;
   app.innerHTML = $('#interviews-tpl').innerHTML;
 
-  // Demo tracker rows
   const rows = [
     ['Finance','financial analyst','ANJALI JOSEPH','HR Screen','Priya S','2025-09-01','15:00','Scheduled'],
     ['Marketing','marketing manager','AKSHIN','Panel','Ravi T','2025-09-01','16:30','Scheduled'],
@@ -266,17 +275,16 @@ async function renderInterviews(){
   tbody.innerHTML = rows.map(r=>`<tr>${r.map(c=>`<td>${c}</td>`).join('')}</tr>`).join('');
 }
 
+// -------- Reports --------
 async function renderReports(){
   if (!requireAuth()) return;
   app.innerHTML = $('#reports-tpl').innerHTML;
 
-  // KPIs (demo metrics)
-  $('#kpiTTF').textContent = '24';     // Avg Time to Fill (days)
-  $('#kpiOAR').textContent = '78%';    // Offer Acceptance Rate
-  $('#kpiI2H').textContent = '4.2:1';  // Interview-to-Hire
-  $('#kpiConv').textContent = '12%';   // Pipeline Conversion
+  $('#kpiTTF').textContent = '24';
+  $('#kpiOAR').textContent = '78%';
+  $('#kpiI2H').textContent = '4.2:1';
+  $('#kpiConv').textContent = '12%';
 
-  // Charts
   const funnel = document.getElementById('reportFunnel');
   const sources = document.getElementById('reportSources');
   if (typeof Chart !== 'undefined'){
@@ -299,7 +307,7 @@ async function renderReports(){
   }
 }
 
-// ============= Wiring =============
+// Wiring
 window.addEventListener('hashchange', router);
 window.addEventListener('load', ()=>{
   document.getElementById('logoutBtn')?.addEventListener('click', ()=>{
