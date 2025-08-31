@@ -73,5 +73,11 @@ a{color:var(--text);text-decoration:none}
 .kpi-num{font-size:32px;font-weight:800}
 .kpi-label{color:var(--muted)}
 @media(max-width:960px){.jobs-list{grid-template-columns:1fr}.kpi-grid{grid-template-columns:repeat(2,1fr)}}
+.zr-header{background:linear-gradient(180deg, rgba(0,0,0,.35), transparent), var(--panel)}
+.widget,.login-card,.job-card,.kpi{background:linear-gradient(180deg, var(--glass), rgba(255,255,255,.02)); backdrop-filter: blur(8px)}
+.btn-primary{box-shadow: var(--glow)}
+.btn-ghost:hover{background: var(--glass)}
+.brand{text-shadow: 0 0 10px rgba(255,255,255,.08)}
+
 
 
